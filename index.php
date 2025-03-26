@@ -12,11 +12,12 @@
       $db = new DB();
     ?>
 
-    <img src="./api/showImg.php?id=1" alt="">
 
     <form action="./api/addImage.php" method="POST" enctype="multipart/form-data">
-      <input class="form-control" type="file" name="image" accept="image/*">
-      <p class="btn btn-primary" id="sub">
+    <div id="images">
+        <input class="form-control" type="file" name="image" accept="image/*">
+      </div>
+    <p class="btn btn-primary" id="sub">
         yolo
       </p>
     </form>
