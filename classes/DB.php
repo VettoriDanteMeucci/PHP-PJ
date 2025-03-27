@@ -9,10 +9,9 @@
             $this->conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
         }
 
-        function addImg($name){
-            $type = $_FILES["image"]["type"];
-            $name = $_FILES["image"]["tmp_name"];
-            $body = file_get_contents($name);
+        function addImg($tmp_name, $type){
+            var_dump($tmp_name);
+            $body = file_get_contents($tmp_name);
             $query = "INSERT INTO image (exte, body) 
             VALUES (:type , :body)";
             $st = $this->conn->prepare($query);

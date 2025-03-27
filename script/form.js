@@ -1,6 +1,8 @@
 const t = document.getElementById("sub");
 const cont = document.getElementById("images")
-const ins = document.querySelectorAll("#images input") 
+const ins = document.querySelectorAll("#images input[type='file']")
+const addText = document.querySelector("#new_text")
+const text_container = document.querySelector("#text_container");
 let counter = 0;
 
 const handleChange = (item) => {
@@ -20,4 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ins.forEach(item =>
         item.addEventListener("change", handleChange)
     )
+})
+
+addText.addEventListener("click", () => {
+    let text = document.createElement("textarea");
+    text.setAttribute("name" , "text[]");
 })
