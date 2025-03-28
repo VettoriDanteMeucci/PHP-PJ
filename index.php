@@ -11,7 +11,6 @@
       include_once "./classes/DB.php";
       $db = new DB();
     ?>
-
     <div>
       <a href="./pages/addTutorial.php">
         Vai

@@ -1,3 +1,6 @@
+CREATE DATABASE wiki;
+USE wiki;
+
 -- Creazione della tabella 'user'
 CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,  -- id dell'utente, PRIMARY KEY
@@ -5,14 +8,16 @@ CREATE TABLE user (
     pass VARCHAR(255) NOT NULL          -- password
 );
 
+CREATE TABLE admin (
+	id INT PRIMARY KEY,
+    FOREIGN KEY (id) REFERENCES user(id)
+);
+
 -- Creazione della tabella 'page' con la FK che fa riferimento a se stessa
 CREATE TABLE page (
     id INT PRIMARY KEY AUTO_INCREMENT,  -- id della pagina, PRIMARY KEY
     name VARCHAR(255) NOT NULL,         -- nome della pagina
-    creator INT,                        -- id dell'utente creatore (FK)
-    parent_id INT,                      -- id della pagina parent (FK che fa riferimento alla stessa tabella 'page')
-    FOREIGN KEY (creator) REFERENCES user(id),  -- FK che fa riferimento alla tabella 'user'
-    FOREIGN KEY (parent_id) REFERENCES page(id) -- FK che fa riferimento alla tabella 'page' per la pagina parent
+    creator INT                         -- id dell'utente creatore (FK)
 );
 
 -- Creazione della tabella 'image'
@@ -27,6 +32,8 @@ CREATE TABLE image (
 -- Creazione della tabella 'text'
 CREATE TABLE text (
     id INT PRIMARY KEY AUTO_INCREMENT,  -- id del testo, PRIMARY KEY
+    title VARCHAR(255),					-- titolo del paragrafo
+    body TEXT,                          -- contiene il testo effettivo
     page INT,                           -- id della pagina a cui appartiene il testo (FK)
     FOREIGN KEY (page) REFERENCES page(id)  -- FK che fa riferimento alla tabella 'page'
 );
