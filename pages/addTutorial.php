@@ -14,14 +14,15 @@
 
 
     <form class="p-2 col-md-8 col-lg-6 mx-auto" action="../actions/addTutorial.php" method="POST" enctype="multipart/form-data">
-      <div class="my-2" id="images">
+    <label class="fs-3">Nome della pagina/tutorial</label>  
+    <input class="form-control" type="text" name="pageName" class="fs-3">  
+    <div class="my-2" id="images">
         <input class="form-control" type="file" name="image0" accept="image/*">
       </div>
       <div id="text_container">
         <div class="d-flex flex-column mb-2 p-2 gap-2 border rounded">
           <input class="form-control fs-3 w-50" name="title[]" type="text">
-          <textarea class="form-control" name="text[]">
-          </textarea>
+          <textarea class="form-control" name="text[]"></textarea>
         </div>
       </div>
       <button id="new_text" class="btn btn-outline-success flex-shrink-1">+</button>
