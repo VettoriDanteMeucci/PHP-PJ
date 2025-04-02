@@ -2,6 +2,13 @@ const root = document.getElementById("root");
 let id = -1;
 
 function render (data) {
+    if(data.images == false && data.texts.length == 0){
+        let error = document.createElement("h1")
+        error.textContent = "No data available for this page"
+        error.className = "fs-1 text-danger text-center my-5"
+        root.append(error)
+        return;
+    }
     console.log(data)
     let ids = renderMenu(data)
     imgsRender(data)
@@ -57,9 +64,8 @@ function imgsRender(data) {
     img_cont.className = "row col-9 text-center row-cols-" + img_n;
     data.images.forEach(src => {
         let img = document.createElement("img");
-        img.style = "max-height: 40vh"
+        img.style = "max-height: 40vh, max-width: 100%";
         img.src = src;
-        img.className = "w-100"
         let di = document.createElement("div")
         di.className = "p-2"
         di.appendChild(img)
