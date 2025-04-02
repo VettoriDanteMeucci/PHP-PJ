@@ -9,7 +9,10 @@
   <body>
     <?php 
       include_once "./classes/DB.php";
+      include_once "./classes/Nav.php";
       $db = new DB();
+      $nav = new Nav();
+      echo $nav->getNav();
     ?>
     <div>
       <a href="./pages/addTutorial.php">

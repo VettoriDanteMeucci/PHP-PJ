@@ -59,6 +59,7 @@ function imgsRender(data) {
         let img = document.createElement("img");
         img.style = "max-height: 40vh"
         img.src = src;
+        img.className = "w-100"
         let di = document.createElement("div")
         di.className = "p-2"
         di.appendChild(img)

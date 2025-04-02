@@ -12,7 +12,12 @@
        $id = $_GET["id"];
   ?>
   <body class="row">
-    <div
+    <?php 
+      include_once "../classes/Nav.php";
+      $nav = new Nav();
+      echo $nav->getNav();
+    ?>  
+  <div
             class="col-11 col-md-10 col-lg-8 row row-cols-1 mx-auto" 
         id="root"
         <?php echo "data-id='$id'" ?>>

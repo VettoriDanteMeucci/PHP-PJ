@@ -9,6 +9,9 @@
   <body>
     <?php 
       include_once "../classes/DB.php";
+      include_once "../classes/Nav.php";
+      $show = new Nav();
+      echo $show->getNav();
       $db = new DB();
     ?>
 

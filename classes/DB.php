@@ -81,6 +81,18 @@
             }
             return $ans;
         }
+
+        function fetchPageByTitle($title){
+            if( $title == ''){
+                return [];
+            }else{
+                $query = "SELECT id, name FROM page 
+                WHERE name LIKE '%$title%'";
+                $res = $this->conn->query($query);
+                $res = $res->fetchAll(PDO::FETCH_ASSOC);
+                return $res;
+            }
+        }
     }
 
 ?>
