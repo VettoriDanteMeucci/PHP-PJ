@@ -3,7 +3,7 @@
         $name = $_GET["name"];
         include("../classes/DB.php");
         $db = new DB();
-        $res = $db->fetchPageByTitle($name);
+        $res = $db->fetchUserByName($name);
         header("Content-type: application/json");
         echo json_encode($res);
     }

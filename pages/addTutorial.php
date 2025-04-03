@@ -14,7 +14,7 @@
       $show = new Nav();
       echo $show->getNav();
       if(!isset($_SESSION["user"])) {
-        header("Location: ../index.php");
+        header("Location: ./login.php");
       }
       $db = new DB();
     ?>

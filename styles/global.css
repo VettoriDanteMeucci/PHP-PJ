@@ -1,3 +1,13 @@
 body{
     overflow: hidden;
 }
+
+.form-control:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important
+}
+
+textarea.form-control{
+    min-height: 20vh;
+}

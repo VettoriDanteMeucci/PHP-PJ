@@ -5,8 +5,8 @@
           $nav = file_get_contents("http://localhost/PHP-PJ/classes/navbar.html");
           if(isset($_SESSION["user"])){
             $name = $_SESSION["user"]["username"];
-            $logged = "<li class='nav-item'><a class='nav-link' href='#'>$name</a></li>";
-            $nav = str_replace("<!--flag1-->", $logged ,$nav);
+            $nav = str_replace("login.php", "profile.php", $nav);
+            $nav = str_replace("Login" ,$name ,$nav);
           }
           return $nav;
         }

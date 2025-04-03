@@ -103,24 +103,34 @@
         }
 
         function login($username, $password){
-            $password = hash("sha256", $password);
             $query = "SELECT * FROM user WHERE username = '$username' AND pass = '$password'";
+            var_dump($query);
             $res = $this->conn->query($query);
-            if($res->rowCount() > 1){
+            $res = $res->fetchAll(PDO::FETCH_ASSOC);
+            if(count($res) == 0){
                 return false; 
             }else{
-                return $res->fetchAll(PDO::FETCH_ASSOC)[0];
+                return $res[0];
             }
         }
-
+        
         function signup($username,$password){
             $password = hash("sha256", $password);
             $query = "INSERT INTO user (username, pass) VALUES (:username, :pass)";
             $st = $this->conn->prepare( $query );
             $st->bindParam(":username", $username);
             $st->bindParam(":pass", $password);
-            var_dump($st);
             $res = $st->execute();
+            if($res == true){
+                return $this->login($username, $password);
+            }
+            return $res;
+        }
+
+        function fetchUserByName($name){
+            $query = "SELECT id, username FROM user WHERE username LIKE '%$name%'";
+            $res = $this->conn->query($query);
+            $res = $res->fetchAll(PDO::FETCH_ASSOC);
             return $res;
         }
 
