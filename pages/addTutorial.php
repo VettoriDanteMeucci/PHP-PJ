@@ -13,6 +13,9 @@
       include_once "../classes/Nav.php";
       $show = new Nav();
       echo $show->getNav();
+      if(!isset($_SESSION["user"])) {
+        header("Location: ../index.php");
+      }
       $db = new DB();
     ?>
 

@@ -43,10 +43,11 @@
          * Summary of createNewPage
          * @return $id which is the id of the new page
          */
-        function createNewPage($name){
-            $query = "INSERT INTO page (name) VALUES (:name)";
+        function createNewPage($name , $creator){
+            $query = "INSERT INTO page (name, creator) VALUES (:name, :creator)";
             $st = $this->conn->prepare($query);
             $st->bindParam("name", $name);
+            $st->bindParam("creator", $creator);
             $st->execute();
             $id = $this->conn->lastInsertId();
             return $id; 
@@ -59,9 +60,16 @@
          */
         function getPage($id){
             $ans = [];
+            $ans["page"] = $this->fetchPageData($id);
             $ans["images"] = $this->getPageImagesSrc($id);
             $ans["texts"] = $this->getTextsPage($id);
             return $ans;
+        }
+
+        function fetchPageData($id){
+            $query = "SELECT * FROM page WHERE id = $id";
+            $ans = $this->conn->query($query);
+            return $ans->fetchAll(PDO::FETCH_ASSOC)[0];
         }
 
         private function getTextsPage( $id ){

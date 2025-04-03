@@ -1,14 +1,11 @@
 <?php 
     include_once("../classes/DB.php");
     $db = new DB();
-    $title;
-    if(isset($_POST["pageName"])){
-        $title = $_POST["pageName"];
-    }else{
-        $title = null;
-    }
-    if($title != null) {
-        $pageID = $db->createNewPage($title);
+    session_start();
+    $title = isset($_POST["pageName"]) ? $_POST["pageName"] : null;
+    if($title != null && isset($_SESSION["user"]) ) {
+        $user = $_SESSION["user"];
+        $pageID = $db->createNewPage($title, $user["id"]);
         $count = 0;
         while(isset($_FILES["image$count"]) && !empty($_FILES["image$count"]["name"])){
         $tmp = $_FILES["image$count"]["tmp_name"];

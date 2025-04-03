@@ -11,7 +11,10 @@ function pages(info){
             let a = document.createElement("a")
             a.innerHTML = item.name
             a.href = "http://localhost/PHP-PJ/pages/viewTutorial.php?id="+item.id
-            show.append(a)
+            a.className = "dropdown-item"
+            let li = document.createElement("li");
+            li.append(a)
+            show.append(li)
             console.log()
         });
         show.classList.add("show")

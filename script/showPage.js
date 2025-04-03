@@ -10,6 +10,7 @@ function render (data) {
         return;
     }
     console.log(data)
+    root.append(createHeader(data.page.name, data.page.id))
     let ids = renderMenu(data)
     imgsRender(data)
     renderTexts(data,ids)
@@ -54,7 +55,7 @@ function createHeader(title, id){
     let header = document.createElement("h1");
     header.textContent = title;
     header.id = id;
-    return header;
+    return header
 }
 
 function imgsRender(data) {
