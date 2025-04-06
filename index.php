@@ -14,11 +14,24 @@
       $db = new DB();
       $nav = new Nav();
       echo $nav->getNav();
+      $pages = $db->fetchPageByTitle();
     ?>
-    <div>
-      <a href="./pages/addTutorial.php">
-        Vai
-      </a>
+    <div class="row">
+      <!-- Presentazione -->
+       <div class="col-11 mx-auto border mt-3">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt molestiae optio beatae deleniti excepturi recusandae. Vitae nesciunt ducimus, alias laudantium recusandae voluptatem itaque cupiditate fugiat, aspernatur fugit veritatis expedita ipsum!
+          Aliquid, facere fugit aperiam in illum iste sapiente voluptas optio debitis et inventore dolorem sint ullam distinctio eveniet? Dicta sapiente rerum nisi odit maiores commodi voluptates ab autem, culpa voluptatibus.
+          Dicta dolor alias quia facilis consequatur odit magni ipsum quasi, saepe minima adipisci quae, iure molestiae inventore? Quasi, dolor neque ullam ad, culpa cupiditate quaerat ut animi facere provident est?
+       </div>
+       <div class="col-11 mx-auto">
+          <?php
+            foreach ($pages as $page) {
+              echo "<div class='mx-1 border rounded shadow mw-100 fs-4'><a class=''
+               href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+               </div>";
+            }
+          ?>
+       </div>
     </div>
 
 

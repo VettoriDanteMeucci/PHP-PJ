@@ -90,7 +90,7 @@
             return $ans;
         }
 
-        function fetchPageByTitle($title){
+        function fetchPageByTitle($title = "_"){
             if( $title == ''){
                 return [];
             }else{
@@ -127,7 +127,7 @@
             return $res;
         }
 
-        function fetchUserByName($name){
+        function fetchUserByName($name = "_"){
             $query = "SELECT id, username FROM user WHERE username LIKE '%$name%'";
             $res = $this->conn->query($query);
             $res = $res->fetchAll(PDO::FETCH_ASSOC);
