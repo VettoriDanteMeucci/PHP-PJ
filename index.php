@@ -24,13 +24,17 @@
           Dicta dolor alias quia facilis consequatur odit magni ipsum quasi, saepe minima adipisci quae, iure molestiae inventore? Quasi, dolor neque ullam ad, culpa cupiditate quaerat ut animi facere provident est?
        </div>
        <div class="col-11 mx-auto">
+       <ul class='mx-1'>
           <?php
             foreach ($pages as $page) {
-              echo "<div class='mx-1 border rounded shadow mw-100 fs-4'><a class=''
-               href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
-               </div>";
+              echo "
+                <li>
+                  <a class='text-decoration-none' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                </li>
+              ";
             }
-          ?>
+            ?>
+            </ul>
        </div>
     </div>
 
