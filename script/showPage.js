@@ -65,7 +65,8 @@ function imgsRender(data) {
     img_cont.className = "row col-9 text-center row-cols-" + img_n;
     data.images.forEach(src => {
         let img = document.createElement("img");
-        img.style = "max-height: 40vh, max-width: 100%";
+        img.style.maxHeight = "40vh";
+        img.style.maxWidth = "100%"
         img.src = src;
         let di = document.createElement("div")
         di.className = "p-2"

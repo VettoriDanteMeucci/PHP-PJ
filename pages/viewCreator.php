@@ -19,21 +19,53 @@ if(!strlen($_GET["id"]) > 0 && isset( $_GET["id"])) {
 }
 $db = new DB();
 $pages = $db->fetchCreatorPages($_GET["id"]);
+$creator = $db->fetchUsernameByID( $_GET["id"] );
+$colLen = count($pages);
+$rem = 0;
+if($colLen % 3 != 0){
+  $rem = $colLen % 3;
+  $colLen -= $rem;
+}
+$colLen /= 3;
 ?>
 
 <body>
 
     <div class="row">
         <div class="fs-2 col-12 text-center">
-            <h1><?php echo $pages[0]["username"];?></h1>
+            <h1><?php echo $creator;?></h1>
         </div>
-        <div class="row">
-            <?php 
-                foreach($pages as $page) {
-                    echo "<a href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name].</a>";
-                }
-            ?>
-        </div>
+        <div class="col-11 mx-auto row">
+         <?php
+          $col = 0;
+          do{
+            echo "<ul class='col-4'>";
+            if(($col == 2 || $colLen == 0) && $rem > 0){
+              for($i = 0; $i <=  $rem; $i++) {
+                $page = $pages[$i+($col*$colLen)];
+                echo "
+                  <li>
+                    <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                  </li>
+                ";
+              }
+              $col =3;
+            }else{
+              for($i = 0; $i < $colLen; $i++) {
+                $page = $pages[$i+($col*$colLen)];
+                echo "
+                  <li>
+                    <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                  </li>
+                ";
+            }
+            }
+              echo "</ul>";
+              $col++;
+          }while($col < 3);
+        ?>
+       </div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

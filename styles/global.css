@@ -11,3 +11,19 @@ body{
 textarea.form-control{
     min-height: 20vh;
 }
+
+.navbar{
+    margin: 0.4rem;
+    border: 1px solid gainsboro;
+    border-radius: 0.4rem;
+}
+
+.navbar svg{
+    margin: 0.4vw;
+    transition: 0.3s;
+}
+
+.navbar svg:hover{
+    scale: 1.5;
+    transition: 0.3s;
+}

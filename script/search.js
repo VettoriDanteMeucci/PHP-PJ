@@ -1,3 +1,4 @@
+const lens = document.getElementById("lens");
 const search = document.querySelector("#search input");
 const show = document.querySelector("#search #show")
 
@@ -39,7 +40,10 @@ function showIn(info){
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log(search)
+    search.classList.toggle("d-none")
 })
+
+lens.addEventListener("click", () =>{search.classList.toggle("d-none")})
 
 search.addEventListener("input", () => {
     input = search.value

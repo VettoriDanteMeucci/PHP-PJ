@@ -15,6 +15,14 @@
       $nav = new Nav();
       echo $nav->getNav();
       $pages = $db->fetchPageByTitle();
+      $colLen = count($pages);
+      $rem = 0;
+      if($colLen % 3 != 0){
+        $rem = $colLen % 3;
+        $colLen -= $rem;
+      }
+      $colLen /= 3;
+
     ?>
     <div class="row">
       <!-- Presentazione -->
@@ -23,18 +31,35 @@
           Aliquid, facere fugit aperiam in illum iste sapiente voluptas optio debitis et inventore dolorem sint ullam distinctio eveniet? Dicta sapiente rerum nisi odit maiores commodi voluptates ab autem, culpa voluptatibus.
           Dicta dolor alias quia facilis consequatur odit magni ipsum quasi, saepe minima adipisci quae, iure molestiae inventore? Quasi, dolor neque ullam ad, culpa cupiditate quaerat ut animi facere provident est?
        </div>
-       <div class="col-11 mx-auto">
-       <ul class='mx-1'>
-          <?php
-            foreach ($pages as $page) {
-              echo "
-                <li>
-                  <a class='text-decoration-none' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
-                </li>
-              ";
+       <div class="col-11 mx-auto row">
+         <?php
+          $col = 0;
+          do{
+            echo "<ul class='col-4'>";
+            if(($col == 2 || $colLen == 0) && $rem > 0){
+              for($i = 0; $i <=  $rem; $i++) {
+                $page = $pages[$i+($col*$colLen)];
+                echo "
+                  <li>
+                    <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                  </li>
+                ";
+              }
+              $col =3;
+            }else{
+              for($i = 0; $i < $colLen; $i++) {
+                $page = $pages[$i+($col*$colLen)];
+                echo "
+                  <li>
+                    <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                  </li>
+                ";
             }
-            ?>
-            </ul>
+            }
+              echo "</ul>";
+              $col++;
+          }while($col < 3);
+        ?>
        </div>
     </div>
 

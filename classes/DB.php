@@ -134,8 +134,14 @@
             return $res;
         }
 
+        function fetchUsernameByID($id){
+            $query = "SELECT username FROM user WHERE id = $id";
+            $res = $this->conn->query($query);
+            return $res->fetchAll(PDO::FETCH_ASSOC)[0]["username"];
+        }
+
         function fetchCreatorPages($id){
-            $query = "SELECT page.id, name, username FROM page JOIN user ON user.id = creator WHERE creator = '$id'";
+            $query = "SELECT page.id, name FROM page JOIN user ON user.id = creator WHERE creator = '$id'";
             $res = $this->conn->query($query);
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
