@@ -12,7 +12,7 @@
     if(isset($_GET["id"]) && $_GET["id"] != "") 
        $id = $_GET["id"];
   ?>
-  <body class="row">
+  <body>
     <?php 
       include_once "../classes/Nav.php";
       $nav = new Nav();

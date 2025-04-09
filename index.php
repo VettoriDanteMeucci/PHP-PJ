@@ -37,15 +37,16 @@
           do{
             echo "<ul class='col-4'>";
             if(($col == 2 || $colLen == 0) && $rem > 0){
-              for($i = 0; $i <=  $rem; $i++) {
-                $page = $pages[$i+($col*$colLen)];
+              $rem = $colLen != 0 ? $rem+1 : $rem ;
+              for($i = 0; $i < $rem ; $i++) {
+              $page = $pages[$i+($col*$colLen)];
                 echo "
                   <li>
                     <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
                   </li>
                 ";
               }
-              $col =3;
+              $col = 3;
             }else{
               for($i = 0; $i < $colLen; $i++) {
                 $page = $pages[$i+($col*$colLen)];

@@ -47,28 +47,25 @@ echo $nav->getNav();
                             </div>
                             <div class="modal-body">
                                 <!-- Form -->
-                                <form>
+                                <form action="../actions/updateuser.php"  method="POST">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp">
-                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone
-                                            else.</div>
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" name="username" class="form-control" id="username">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
+                                        <label for="pass" class="form-label">New Password</label>
+                                        <input type="password" name="newPass" class="form-control" id="pass">
                                     </div>
-                                    <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    <div class="mb-3">
+                                        <label for="pass" class="form-label">Old Password</label>
+                                        <input type="password" name="pass" class="form-control" id="pass">
                                     </div>
+
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
                             </div>
                         </div>
                     </div>

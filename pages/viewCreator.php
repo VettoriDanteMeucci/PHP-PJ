@@ -9,6 +9,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/global.css">
 </head>
+<body>
 <?php
 include "../classes/DB.php";
 include "../classes/Nav.php";
@@ -29,8 +30,6 @@ if($colLen % 3 != 0){
 $colLen /= 3;
 ?>
 
-<body>
-
     <div class="row">
         <div class="fs-2 col-12 text-center">
             <h1><?php echo $creator;?></h1>
@@ -41,7 +40,8 @@ $colLen /= 3;
           do{
             echo "<ul class='col-4'>";
             if(($col == 2 || $colLen == 0) && $rem > 0){
-              for($i = 0; $i <=  $rem; $i++) {
+              $rem = $colLen != 0 ? $rem+1 : $rem ;
+              for($i = 0; $i < $rem; $i++) {
                 $page = $pages[$i+($col*$colLen)];
                 echo "
                   <li>
