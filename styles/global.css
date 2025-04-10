@@ -1,5 +1,29 @@
+@font-face {
+    font-family: Minecraft-Ten;
+    src: url("./fonts/minecraft-ten-font/MinecraftTen-VGORe.ttf") format("truetype");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Minecraft-Regular;
+    src: url("./fonts/minecraft-font/MinecraftRegular-Bmg3.otf") format("opentype");
+    font-style: normal;
+}
+
+:root{
+    --green-grass-1:  rgb(90,137,0);
+    --greendark-grass-1: rgb(80,117,0);
+}
+
+*{
+    color: white !important;
+}
+
 body{
     overflow: hidden;
+    font-family: "Minecraft-Regular";
+    /* background-color: rgb(152,108,76); */
+    background-color: rgb(15,25,25);
 }
 
 .form-control:focus{
@@ -13,9 +37,17 @@ textarea.form-control{
 }
 
 .navbar{
-    margin: 0.4rem;
-    border: 1px solid gainsboro;
-    border-radius: 0.4rem;
+    /* background-color: rgb(106,155,31); */
+    background-color: var(--green-grass-1);
+}
+
+.navbar ul{
+    /* background-color: rgb(106,155,31); */
+    background-color: var(--green-grass-1);
+}
+
+.navbar .navbar-brand{
+    font-family: Minecraft-Ten;
 }
 
 .navbar svg{
@@ -26,4 +58,22 @@ textarea.form-control{
 .navbar svg:hover{
     scale: 1.5;
     transition: 0.3s;
+}
+
+.navbar input{
+    background-color: var(--greendark-grass-1);
+}
+
+.navbar input:focus{
+    background-color: var(--greendark-grass-1);
+}
+
+
+.info{
+    color: white;
+    font-size: 1.2rem;
+    background-image: url("../images/spruce_planks.jpg");
+    background-size: 40%;
+    background-repeat: repeat;
+    border: 5px solid black;
 }

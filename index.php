@@ -26,7 +26,7 @@
     ?>
     <div class="row">
       <!-- Presentazione -->
-       <div class="col-11 mx-auto border mt-3">
+       <div class="col-11 mx-auto p-4 mt-3 info">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt molestiae optio beatae deleniti excepturi recusandae. Vitae nesciunt ducimus, alias laudantium recusandae voluptatem itaque cupiditate fugiat, aspernatur fugit veritatis expedita ipsum!
           Aliquid, facere fugit aperiam in illum iste sapiente voluptas optio debitis et inventore dolorem sint ullam distinctio eveniet? Dicta sapiente rerum nisi odit maiores commodi voluptates ab autem, culpa voluptatibus.
           Dicta dolor alias quia facilis consequatur odit magni ipsum quasi, saepe minima adipisci quae, iure molestiae inventore? Quasi, dolor neque ullam ad, culpa cupiditate quaerat ut animi facere provident est?
