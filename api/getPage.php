@@ -4,6 +4,12 @@
     header("Content-Type: application/json");
     if(isset($_GET["id"])){
         $ans = $db->getPage($_GET["id"]);
-        echo json_encode($ans);
+        if($ans != false){
+            echo json_encode($ans);
+        }else{
+            echo json_encode(null);
+        }
+    }else{
+        echo json_encode(null);
     }
 ?>

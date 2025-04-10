@@ -61,6 +61,7 @@
         function getPage($id){
             $ans = [];
             $ans["page"] = $this->fetchPageData($id);
+            if($ans["page"] == false) return false;
             $ans["images"] = $this->getPageImagesSrc($id);
             $ans["texts"] = $this->getTextsPage($id);
             return $ans;
@@ -69,7 +70,11 @@
         function fetchPageData($id){
             $query = "SELECT * FROM page WHERE id = $id";
             $ans = $this->conn->query($query);
-            return $ans->fetchAll(PDO::FETCH_ASSOC)[0];
+            $ans = $ans->fetchAll(PDO::FETCH_ASSOC);
+            if(count($ans) > 0){
+                return $ans[0];
+            }
+            return false; 
         }
 
         private function getTextsPage( $id ){

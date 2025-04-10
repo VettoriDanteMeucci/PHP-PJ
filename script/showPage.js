@@ -1,15 +1,19 @@
 const root = document.getElementById("root");
 let id = -1;
 
+function errorFound(){
+    let error = document.createElement("h1")
+    error.textContent = "No data available for this page"
+    error.className = "fs-1 text-danger text-center my-5"
+    root.append(error)
+}
+
 function render (data) {
-    if(data.images == false && data.texts.length == 0){
-        let error = document.createElement("h1")
-        error.textContent = "No data available for this page"
-        error.className = "fs-1 text-danger text-center my-5"
-        root.append(error)
+    if(data == null || (data.images == false && data.texts.length == 0)){
+        errorFound();
         return;
     }
-    console.log(data)
+    console.log(data, "d")
     let title = createHeader(data.page.name, data.page.id);
     title.classList.add("display-4");
     root.append(title)
