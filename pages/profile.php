@@ -20,11 +20,11 @@ echo $nav->getNav();
 <body>
 
     <div class="row">
-        <div class="bg-info-subtle col-md-3">
+        <div class="col-md-3">
             <h1>
                 <?php echo "Ciao " . $_SESSION["user"]["username"]; ?>
             </h1>
-            <div class="mx-3 bg-white rounded p-2 mb-3">
+            <div class="mx-3 bg-dark-1 rounded p-2 mb-3">
                 <a href="../actions/logoutaction.php" class="btn btn-danger m-0">Logout</a>
                 remove player info
                 <hr class="separator">
@@ -39,10 +39,10 @@ echo $nav->getNav();
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content bg-dark-1">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">

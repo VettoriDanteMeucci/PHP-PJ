@@ -10,7 +10,9 @@ function render (data) {
         return;
     }
     console.log(data)
-    root.append(createHeader(data.page.name, data.page.id))
+    let title = createHeader(data.page.name, data.page.id);
+    title.classList.add("display-4");
+    root.append(title)
     let ids = renderMenu(data)
     imgsRender(data)
     renderTexts(data,ids)
@@ -54,6 +56,7 @@ function renderTexts(data, ids){
 function createHeader(title, id){
     let header = document.createElement("h1");
     header.textContent = title;
+    header.className = "font-minecraft-ten"
     header.id = id;
     return header
 }

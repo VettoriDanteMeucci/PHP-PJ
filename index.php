@@ -36,13 +36,14 @@
           $col = 0;
           do{
             echo "<ul class='col-4'>";
+            //parser check when the coloumns
             if(($col == 2 || $colLen == 0) && $rem > 0){
               $rem = $colLen != 0 ? $rem+1 : $rem ;
               for($i = 0; $i < $rem ; $i++) {
               $page = $pages[$i+($col*$colLen)];
                 echo "
                   <li>
-                    <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                    <a class='text-white' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
                   </li>
                 ";
               }
@@ -52,7 +53,7 @@
                 $page = $pages[$i+($col*$colLen)];
                 echo "
                   <li>
-                    <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                    <a class='text-white' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
                   </li>
                 ";
             }

@@ -13,6 +13,7 @@
 :root{
     --green-grass-1:  rgb(90,137,0);
     --greendark-grass-1: rgb(80,117,0);
+    --dark-1: rgb(15,25,25);
 }
 
 *{
@@ -23,17 +24,19 @@ body{
     overflow: hidden;
     font-family: "Minecraft-Regular";
     /* background-color: rgb(152,108,76); */
-    background-color: rgb(15,25,25);
+    background-color:var(--dark-1) ;
 }
 
-.form-control:focus{
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: inherit !important
+.bg-dark-1{
+    background-color: var(--dark-1);
 }
 
-textarea.form-control{
-    min-height: 20vh;
+.font-minecraft-ten{
+    font-family: "Minecraft-Ten";
+}
+
+.font-minecraft-reg{
+    font-family: "Minecraft-Regular";
 }
 
 .navbar{
@@ -76,4 +79,20 @@ textarea.form-control{
     background-size: 40%;
     background-repeat: repeat;
     border: 5px solid black;
+}
+
+/* Form controller */
+.form-control{
+    background-color: black;
+}
+
+.form-control:focus{
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+    background-color: black;
+}
+
+textarea.form-control{
+    min-height: 20vh;
 }
