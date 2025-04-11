@@ -19,7 +19,7 @@ echo $nav->getNav();
 <body>
 
     <div class="row">
-        <form action="../actions/loginaction.php" method="POST" class="col-11 col-md-9 col-lg-6 mx-auto mt-5">
+        <form action="../actions/loginaction.php" method="POST" class="col-11 bg-stone form-stone col-md-9 col-lg-6 mx-auto mt-5 px-3 py-4 rounded">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="username">

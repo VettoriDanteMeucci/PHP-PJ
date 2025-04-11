@@ -1,0 +1,17 @@
+form.bg-deepslate input ,form.bg-deepslate textarea{
+    border: 1px black solid;
+}
+
+form.bg-deepslate > div:first-child{
+    border: 5px black solid;
+    border-radius: 0.6rem;
+    background-color: rgba(130, 130, 130, 0.356);
+    backdrop-filter: blur(4px);
+}
+
+
+input.bg-spruce:focus , textarea.bg-spruce:focus{
+    background-image: url(../images/dark_oak_planck.jpg);
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}

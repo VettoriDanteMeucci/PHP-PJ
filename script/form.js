@@ -10,7 +10,7 @@ const new_img_input = (item) => {
         let tmp = document.createElement("input");
         tmp.type = "file";
         tmp.accept = "image/*";
-        tmp.classList.add("form-control");
+        tmp.classList.add("form-control" , "bg-spruce", "mt-2");
         counter++;
         tmp.name = "image"+counter;
         tmp.addEventListener("change", new_img_input)
@@ -20,7 +20,7 @@ const new_img_input = (item) => {
 
 function title_input () {
     let title = document.createElement("input")
-    title.classList.add("form-control", "fs-3", "w-50")
+    title.classList.add("form-control", "bg-spruce", "fs-3", "w-50")
     title.name = "title[]"
     title.type = "text"
     return title
@@ -29,7 +29,7 @@ function title_input () {
 function text_input () {
     let text = document.createElement("textarea");
     text.setAttribute("name" , "text[]");
-    text.classList.add("form-control");
+    text.classList.add("form-control", "bg-spruce");
     return text
 }
 
@@ -45,7 +45,7 @@ addText.addEventListener("click", (e) => {
     let title = title_input()
     let text = text_input()
     let div = document.createElement("div")
-    div.classList.add("d-flex", "flex-column", "mb-2", "p-2", "gap-2", "border", "rounded")
+    div.classList.add("d-flex", "flex-column", "mb-2", "p-2", "gap-2")
     div.append(title, text)
     text_container.append(div);
 })

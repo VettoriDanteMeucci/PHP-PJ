@@ -21,7 +21,7 @@
 }
 
 body{
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: "Minecraft-Regular";
     /* background-color: rgb(152,108,76); */
     background-color:var(--dark-1) ;
@@ -78,18 +78,28 @@ body{
 .info{
     color: white;
     font-size: 1.2rem;
-    background-image: url("../images/spruce_planks.jpg");
-    background-size: 40%;
-    background-repeat: repeat;
     border: 5px solid black;
 }
 
-/* Form controller */
+/* Backgrounds */
 .bg-stone{
     background-image: url(../images/stone.jpg);
-    background-size: 50% 50%;
+    background-size: 250px 250px;
+    background-repeat: repeat;
 }
 
+.bg-spruce{
+    background-image: url(../images/spruce_plank.jpg);
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
+
+.bg-deepslate{
+    background-image: url(../images/deepslate.jpg);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+}
+/* Form controller */
 .form-stone input.form-control{
     background-color: rgba(0, 0, 0, 0.45);
     backdrop-filter: blur(5px);
