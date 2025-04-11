@@ -39,7 +39,7 @@ echo $nav->getNav();
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content bg-dark-1">
+                        <div class="modal-content bg-stone">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -47,7 +47,7 @@ echo $nav->getNav();
                             </div>
                             <div class="modal-body">
                                 <!-- Form -->
-                                <form action="../actions/updateuser.php"  method="POST">
+                                <form class="form-stone" action="../actions/updateuser.php"  method="POST">
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
                                         <input type="text" name="username" class="form-control" id="username">

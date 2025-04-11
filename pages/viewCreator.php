@@ -45,7 +45,7 @@ $colLen /= 3;
                 $page = $pages[$i+($col*$colLen)];
                 echo "
                   <li>
-                    <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                    <a class='text-white' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
                   </li>
                 ";
               }
@@ -55,7 +55,7 @@ $colLen /= 3;
                 $page = $pages[$i+($col*$colLen)];
                 echo "
                   <li>
-                    <a class='text-black' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
+                    <a class='text-white' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
                   </li>
                 ";
             }

@@ -71,6 +71,9 @@ body{
     background-color: var(--greendark-grass-1);
 }
 
+.navbar .dropdown-item:hover{
+    background-color: var(--greendark-grass-1);
+}
 
 .info{
     color: white;
@@ -82,6 +85,22 @@ body{
 }
 
 /* Form controller */
+.bg-stone{
+    background-image: url(../images/stone.jpg);
+    background-size: 50% 50%;
+}
+
+.form-stone input.form-control{
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgb(50, 50, 50)
+}
+
+.form-stone button.btn-primary{
+    background-color: rgb(44,44,52);
+    border-color: rgba(0, 0, 0, 0.589);
+}
+
 .form-control{
     background-color: black;
 }
