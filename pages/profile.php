@@ -71,6 +71,15 @@ echo $nav->getNav();
                     </div>
                 </div>
                 <!-- end modal -->
+                 <!-- separator -->
+                <?php 
+                    if($_SESSION["user"]["isAdmin"]){
+                        ?>
+                        <hr class="separator">
+                        <button class="btn">Lesso</button>
+                        <?php
+                    }
+                ?>                
             </div>
         </div>
         <div class="col-md-9">

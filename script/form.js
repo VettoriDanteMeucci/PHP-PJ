@@ -20,7 +20,7 @@ const new_img_input = (item) => {
 
 function title_input () {
     let title = document.createElement("input")
-    title.classList.add("form-control", "bg-spruce", "fs-3", "w-50")
+    title.classList.add("form-control", "bg-spruce", "fs-3", "w-50", "font-minecraft-ten")
     title.name = "title[]"
     title.type = "text"
     return title

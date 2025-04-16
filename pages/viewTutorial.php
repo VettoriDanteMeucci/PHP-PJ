@@ -15,12 +15,19 @@
   <body>
     <?php 
       include_once "../classes/Nav.php";
+      include_once "../classes/DB.php"
       $nav = new Nav();
+      $db = new DB();
       if($id == -1){
         header("Location: ../index.php");
       }
       echo $nav->getNav();
-    ?>  
+    ?>
+    <?php 
+          if(isset($_SESSION["user"]) && ($_SESSION["user"]["isAdmin"]) || ()){
+      
+          }
+    ?>
   <div
             class="col-11 col-md-10 col-lg-8 row row-cols-1 mx-auto" 
         id="root"

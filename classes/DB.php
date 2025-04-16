@@ -19,7 +19,6 @@
         }
 
         function addImg($tmp_name, $type, $pageID){
-            var_dump($tmp_name);
             $body = file_get_contents($tmp_name);
             $query = "INSERT INTO image (exte, body, page) 
             VALUES (:type , :body, :page)";
@@ -109,7 +108,6 @@
 
         function login($username, $password){
             $query = "SELECT * FROM user WHERE username = '$username' AND pass = '$password'";
-            var_dump($query);
             $res = $this->conn->query($query);
             $res = $res->fetchAll(PDO::FETCH_ASSOC);
             if(count($res) == 0){
@@ -119,6 +117,15 @@
             }
         }
         
+        function needAdmin(){
+            $query = "SELECT count(*) as total FROM admin";
+            $res = $this->conn->query($query);
+            $res = $res->fetchAll(PDO::FETCH_ASSOC);
+            if($res[0]["total"] == 0){
+                return true;
+            }
+            return false;
+        }
         function signup($username,$password){
             $password = hash("sha256", $password);
             $query = "INSERT INTO user (username, pass) VALUES (:username, :pass)";
@@ -127,9 +134,28 @@
             $st->bindParam(":pass", $password);
             $res = $st->execute();
             if($res == true){
-                return $this->login($username, $password);
+                $ans = $this->login($username, $password);
+                if($this->needAdmin()){
+                    $this->addAdmin($ans["id"]);
+                }
+                return $ans;
             }
             return $res;
+        }
+
+        function isAdmin($id){
+            $query = "SELECT * FROM admin WHERE id = $id";
+            $rows = $this->conn->query($query)->rowCount();
+            if($rows == 1){
+                return true;
+            }
+            return false;
+        }
+        function addAdmin($id){
+            $query = "INSERT INTO admin (id) values (:id)";
+            $st = $this->conn->prepare( $query );
+            $st->bindParam(":id", $id);
+            $st->execute();
         }
 
         function fetchUserByName($name = "_"){
