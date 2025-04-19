@@ -171,12 +171,60 @@
             return $res->fetchAll(PDO::FETCH_ASSOC)[0]["username"];
         }
 
+        /**
+         * 
+         * @param mixed $id
+         * @return array of all the pages created by the user
+         */
         function fetchCreatorPages($id){
             $query = "SELECT page.id, name FROM page JOIN user ON user.id = creator WHERE creator = '$id'";
             $res = $this->conn->query($query);
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        function fetchCreatorIDByPage($pageID){
+            $query = "SELECT creator FROM page WHERE id = $pageID";
+            $res = $this->conn->query($query);
+            if($res->rowCount() == 0){
+                return false;
+            }else{
+                return $res->fetchAll(PDO::FETCH_ASSOC)[0]["creator"];
+            }
+        }
+
+        function updateUsername($username, $pass, $userID) {
+            $pass = hash("sha256", $pass);
+        
+            $query = "UPDATE user SET username = :username WHERE id = :userID AND pass = :pass";
+            $st = $this->conn->prepare($query);
+        
+            $st->bindParam(':username', $username);
+            $st->bindParam(':userID', $userID);
+            $st->bindParam(':pass', $pass);
+        
+            $success = $st->execute();
+        
+            // Controlla se almeno una riga è stata modificata
+            return $success && $st->rowCount() > 0;
+        }
+        
+
+        function updatePass($newPass, $oldPass, $userID) {
+            $oldPass = hash("sha256", $oldPass);
+            $newPass = hash("sha256", $newPass);
+        
+            $query = "UPDATE user SET pass = :newPass WHERE id = :userID AND pass = :oldPass";
+            $st = $this->conn->prepare($query);
+        
+            $st->bindParam(':newPass', $newPass);
+            $st->bindParam(':userID', $userID);
+            $st->bindParam(':oldPass', $oldPass);
+        
+            $success = $st->execute();
+        
+            return $success && $st->rowCount() > 0;
+        }
+        
     }
 
 ?>

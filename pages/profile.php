@@ -50,15 +50,15 @@ echo $nav->getNav();
                                 <form class="form-stone" action="../actions/updateuser.php"  method="POST">
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
-                                        <input type="text" name="username" class="form-control" id="username">
+                                        <input required type="text" name="username" class="form-control" id="username">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="pass" class="form-label">New Password</label>
-                                        <input type="password" name="newPass" class="form-control" id="pass">
+                                        <label for="newpass" class="form-label">New Password</label>
+                                        <input type="password" name="newPass" class="form-control" id="newpass">
                                     </div>
                                     <div class="mb-3">
                                         <label for="pass" class="form-label">Old Password</label>
-                                        <input type="password" name="pass" class="form-control" id="pass">
+                                        <input required type="password" name="pass" class="form-control" id="pass">
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Submit</button>

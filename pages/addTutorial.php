@@ -28,15 +28,15 @@
     enctype="multipart/form-data">
     <div class="px-2">
       <label class="fs-3">Nome della pagina/tutorial</label>
-      <input class="form-control fs-2 bg-spruce font-minecraft-ten" type="text" name="pageName" class="fs-3">
+      <input required class="form-control fs-2 bg-spruce font-minecraft-ten" type="text" name="pageName" class="fs-3">
       <div class="my-2" id="images">
         <input class="form-control bg-spruce" type="file" name="image0" accept="image/*">
       </div>
     </div>
     <div id="text_container">
       <div class="d-flex flex-column mb-2 p-2 gap-2">
-        <input class="form-control fs-3 w-50 bg-spruce font-minecraft-ten" name="title[]" type="text">
-        <textarea class="form-control bg-spruce" name="text[]"></textarea>
+        <input required class="form-control fs-3 w-50 bg-spruce font-minecraft-ten" name="title[]" type="text">
+        <textarea required class="form-control bg-spruce" name="text[]"></textarea>
       </div>
     </div>
     <button id="new_text" class="btn btn-success flex-shrink-1">+</button>

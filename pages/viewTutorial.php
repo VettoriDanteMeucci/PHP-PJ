@@ -15,7 +15,7 @@
   <body>
     <?php 
       include_once "../classes/Nav.php";
-      include_once "../classes/DB.php"
+      include_once "../classes/DB.php";
       $nav = new Nav();
       $db = new DB();
       if($id == -1){
@@ -23,15 +23,16 @@
       }
       echo $nav->getNav();
     ?>
-    <?php 
-          if(isset($_SESSION["user"]) && ($_SESSION["user"]["isAdmin"]) || ()){
-      
-          }
-    ?>
   <div
             class="col-11 col-md-10 col-lg-8 row row-cols-1 mx-auto" 
         id="root"
         <?php echo "data-id='$id'" ?>>
+        <?php 
+              $creator = $db->fetchCreatorIDByPage($id);
+              if(isset($_SESSION["user"]) && ( ($_SESSION["user"]["isAdmin"]) || ($creator == $_SESSION["user"]["id"]))){
+                echo "<button class='btn btn-danger mx-auto w-25 mt-3'>Delete</button>";
+              }
+        ?>
     </div>
 
 
