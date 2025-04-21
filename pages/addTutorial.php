@@ -24,7 +24,7 @@
   ?>
 
 
-  <form class="p-2 col-md-8 col-lg-6 mx-auto mt-4 rounded bg-deepslate" action="../actions/addTutorial.php" method="POST"
+  <form class="p-2 col-md-8 col-lg-6 mx-auto mt-4 rounded bg-bricks " action="../actions/addTutorial.php" method="POST"
     enctype="multipart/form-data">
     <div class="px-2">
       <label class="fs-3">Nome della pagina/tutorial</label>

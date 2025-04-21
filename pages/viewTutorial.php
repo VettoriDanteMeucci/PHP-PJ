@@ -30,7 +30,12 @@
         <?php 
               $creator = $db->fetchCreatorIDByPage($id);
               if(isset($_SESSION["user"]) && ( ($_SESSION["user"]["isAdmin"]) || ($creator == $_SESSION["user"]["id"]))){
-                echo "<button class='btn btn-danger mx-auto w-25 mt-3'>Delete</button>";
+                ?>
+                  <form action="../actions/deletePage.php" method="POST">
+                    <input type="hidden" name="pageID" value=<?php echo "'$id'"?>>
+                    <button class="btn btn-danger">Elimina questo articolo</button>
+                  </form>
+                <?php
               }
         ?>
     </div>

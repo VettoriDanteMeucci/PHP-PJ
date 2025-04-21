@@ -158,6 +158,12 @@
             $st->execute();
         }
 
+        /**
+         * Return the user of which username contains the given string
+         * when nothing is given return all the users
+         * @param mixed $name
+         * @return array
+         */
         function fetchUserByName($name = "_"){
             $query = "SELECT id, username FROM user WHERE username LIKE '%$name%'";
             $res = $this->conn->query($query);
@@ -172,7 +178,7 @@
         }
 
         /**
-         * 
+         * It returns all the ids of every page created by the user with the given id.
          * @param mixed $id
          * @return array of all the pages created by the user
          */
@@ -182,6 +188,11 @@
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
 
+
+        /**
+         * The id of a page
+         * @param mixed $pageID false when not found else the id of the page creator
+         */
         function fetchCreatorIDByPage($pageID){
             $query = "SELECT creator FROM page WHERE id = $pageID";
             $res = $this->conn->query($query);
@@ -225,6 +236,10 @@
             return $success && $st->rowCount() > 0;
         }
         
+        function deletePage($id){
+            $query = "DELETE FROM page WHERE id = $id";
+            $this->conn->exec($query);
+        }
     }
 
 ?>
