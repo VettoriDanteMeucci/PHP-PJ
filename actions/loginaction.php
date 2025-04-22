@@ -1,6 +1,8 @@
 <?php 
     include_once("../classes/DB.php");
+    include_once "../classes/Info.php";
     $db = new DB();
+    session_start();
     if(isset($_POST["username"]) && isset($_POST["password"])
     && $_POST["username"] != "" && $_POST["password"] != "" ) {
         $pass = hash("sha256", $_POST["password"]);
@@ -10,11 +12,12 @@
             $user["isAdmin"] = $db->isAdmin($user["id"]);
             session_start();
             $_SESSION["user"] = $user;
-            header("Location: ../index.php");
+            Info::addInfoMsg("Accesso effettuato", false);
         }else{
-            echo "Username or password is incorrect";
+            Info::addInfoMsg("Credenziali inserite non valide");
         }
     }else{
-        echo "something went wrong";
+        Info::addInfoMsg("I dati non sono stati inseriti correttamente");
     }
+    header("Location: ../index.php");
 ?>

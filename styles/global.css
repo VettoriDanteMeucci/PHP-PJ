@@ -125,3 +125,11 @@ body{
 textarea.form-control{
     min-height: 20vh;
 }
+
+.alert-info{
+    background-color: rgba(12, 203, 241, 0.85) !important;
+}
+
+.alert-danger{
+    background-color: rgba(220,52,68,0.85) !important;
+}

@@ -71,61 +71,6 @@
                         </div>
                     </div>
                     <!-- end modal -->
-                    <!-- separator -->
-                    <!-- Add and remove admin -->
-                    <?php
-                    if ($_SESSION["user"]["isAdmin"]) {
-                        ?>
-                        <hr class="separator">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#adminHandler">
-                            admins
-                        </button>
-                        modifica gli admin
-
-                        <!-- Modal amdin handler -->
-                        <!-- Modal -->
-                        <form method="POST" action="../actions/setAdmins.php" class="modal fade" id="adminHandler" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content bg-stone">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div>
-                                            <?php
-                                            $users = $db->fetchUserByName();
-                                            foreach ($users as $singleUser) {
-                                                ?>
-                                                <div class="mb-3 form-check">
-                                                    <input type="checkbox" 
-                                                        <?php 
-                                                            $db->isAdmin($singleUser["id"]) ? print("checked") : print ("");
-                                                        ?>
-                                                            class="form-check-input" <?php echo "value='$singleUser[id]'"; ?> id=<?php echo "'$singleUser[id]'"?>>
-                                                    <label class="form-check-label" for=<?php echo "'$singleUser[id]'"?>><?php echo $singleUser["username"]?></label>
-                                                </div>
-                                                <?php
-                                            }
-                                            ?>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <?php
-                    }
-                    ?>
-
                 </div>
             </div>
             <div class="col-md-9">

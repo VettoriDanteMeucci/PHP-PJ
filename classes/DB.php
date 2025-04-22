@@ -158,6 +158,13 @@
             $st->execute();
         }
 
+        function removeAdmin($id){
+            $query = "DELETE FROM admin WHERE id = :userID";
+            $st = $this->conn->prepare($query);
+            $st->bindParam(":userID", $id);
+            $st->execute();
+        }
+
         /**
          * Return the user of which username contains the given string
          * when nothing is given return all the users

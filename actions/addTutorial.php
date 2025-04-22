@@ -1,5 +1,6 @@
 <?php 
     include_once("../classes/DB.php");
+    include_once "../classes/Info.php";
     $db = new DB();
     session_start();
     $title = isset($_POST["pageName"]) ? $_POST["pageName"] : null;
@@ -22,6 +23,7 @@
         }
         header("Location: http://localhost/PHP-PJ/pages/viewTutorial.php?id=".$pageID);
     }else{
+        Info::addInfoMsg("Qualcosa è andato storto nell'inserimento dei dati ! ! !");
         header("Location: http://localhost/PHP-PJ/");
     }
 

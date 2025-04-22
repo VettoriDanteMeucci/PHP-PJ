@@ -8,6 +8,10 @@
             $nav = str_replace("login.php", "profile.php", $nav);
             $nav = str_replace("Login" ,$name ,$nav);
           }
+          if(isset($_SESSION["info"])){
+            $nav .= $_SESSION["info"];
+            unset($_SESSION["info"]);
+          }
           return $nav;
         }
     }
