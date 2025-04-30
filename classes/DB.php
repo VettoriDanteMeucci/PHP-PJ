@@ -224,10 +224,20 @@
          * @param mixed $id
          * @return array of all the pages created by the user
          */
-        function fetchCreatorPages($id){
+        function fetchCreatorPages($id, $wantImages = false){
             $query = "SELECT page.id, name FROM page JOIN user ON user.id = creator WHERE creator = '$id'";
             $res = $this->conn->query($query);
-            return $res->fetchAll(PDO::FETCH_ASSOC);
+            $res = $res->fetchAll(PDO::FETCH_ASSOC);
+            if($wantImages){
+                $ans = [];
+                foreach($res as $page){
+                    $imgs = $this->getPageImagesSrc($page["id"]);
+                    $page["imgs"] = $imgs;
+                    $ans[] = $page;
+                }
+                $res = $ans;
+            }
+            return $res;
         }
 
 

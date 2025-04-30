@@ -14,76 +14,33 @@
   <?php
   include "../classes/DB.php";
   include "../classes/Nav.php";
+  include "../classes/MakeCard.php";
   $nav = new Nav();
   echo $nav->getNav();
   if (!strlen($_GET["id"]) > 0 && isset($_GET["id"])) {
     header("location: ../index.php");
   }
   $db = new DB();
-  $pages = $db->fetchCreatorPages($_GET["id"]);
+  $pages = $db->fetchCreatorPages($_GET["id"],true);
   $creator = $db->fetchUsernameByID($_GET["id"]);
   $db->addViewsToUser($_GET["id"]);
-  $colLen = count($pages);
-  $rem = 0;
-  if ($colLen % 3 != 0) {
-    $rem = $colLen % 3;
-    $colLen -= $rem;
-  }
-  $colLen /= 3;
   ?>
 
   <div class="row">
     <div class="fs-2 col-12 text-center">
       <h1><?php echo $creator; ?></h1>
     </div>
-    <div class="col-11 mx-auto row">
-      <?php
-      if (isset($_SESSION["user"]) && $_SESSION["user"]["isAdmin"] && $_GET["id"] != $_SESSION["user"]["id"]) {
-        if ($db->isAdmin($_GET["id"])) {
-          ?>
-          <form method="POST" action="../actions/removeadminaction.php">
-            <input type="hidden" name="userID" <?php echo "value='$_GET[id]'" ?>>
-            <button class="btn btn-danger">Rimuovi Amministratore</button>
-          </form>
+    <div class="col-11 mx-auto row pt-5">
+    <?php
+      foreach ($pages as $page) {
+        ?>
+        <div class="p-2 col">
           <?php
-        } else {
+          makeCard($page);
           ?>
-          <form method="POST" action="../actions/addadminaction.php">
-            <input type="hidden" name="userID" <?php echo "value='$_GET[id]'" ?>>
-            <button class="btn btn-success">Aggiungi Amministratore</button>
-          </form>
-          <?php
-        }
+        </div>
+        <?php
       }
-      ?>
-      <?php
-      $col = 0;
-      do {
-        echo "<ul class='col-4'>";
-        if (($col == 2 || $colLen == 0) && $rem > 0) {
-          $rem = $colLen != 0 ? $rem + 1 : $rem;
-          for ($i = 0; $i < $rem; $i++) {
-            $page = $pages[$i + ($col * $colLen)];
-            echo "
-                  <li>
-                    <a class='text-white' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
-                  </li>
-                ";
-          }
-          $col = 3;
-        } else {
-          for ($i = 0; $i < $colLen; $i++) {
-            $page = $pages[$i + ($col * $colLen)];
-            echo "
-                  <li>
-                    <a class='text-white' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>
-                  </li>
-                ";
-          }
-        }
-        echo "</ul>";
-        $col++;
-      } while ($col < 3);
       ?>
     </div>
   </div>
