@@ -12,4 +12,5 @@
     }else{
         Info::addInfoMsg("Qualcosa è andato storto", false);
     }
+    header("Location: http://localhost/PHP-PJ/")
 ?>

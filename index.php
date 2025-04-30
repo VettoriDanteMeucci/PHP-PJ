@@ -11,10 +11,12 @@
     <?php 
       include_once "./classes/DB.php";
       include_once "./classes/Nav.php";
+      include_once "./classes/MakeCard.php";
       $db = new DB();
       $nav = new Nav();
       echo $nav->getNav();
-      $pages = $db->fetchPageByTitle();
+      $pages = $db->fetchPageByTitle("_", true);
+      var_dump($pages);
       $colLen = count($pages);
       $rem = 0;
       if($colLen % 3 != 0){
@@ -41,6 +43,7 @@
               $rem = $colLen != 0 ? $rem+1 : $rem ;
               for($i = 0; $i < $rem ; $i++) {
               $page = $pages[$i+($col*$colLen)];
+                makeCard($page);
                 echo "
                   <li>
                     <a class='text-white' href='http://localhost/PHP-PJ/pages/viewTutorial.php?id=$page[id]'>$page[name]</a>

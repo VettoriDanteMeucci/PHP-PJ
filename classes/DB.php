@@ -120,7 +120,7 @@
             $st->bindParam(":userID", $userID);
             $st->execute();
         }
-        function fetchPageByTitle($title = "_"){
+        function fetchPageByTitle($title = "_", $wantImages = false){
             if( $title == ''){
                 return [];
             }else{
@@ -128,6 +128,15 @@
                 WHERE name LIKE '%$title%' ORDER BY views DESC";
                 $res = $this->conn->query($query);
                 $res = $res->fetchAll(PDO::FETCH_ASSOC);
+                if($wantImages){
+                    $ans = [];
+                    foreach($res as $page){
+                        $imgs = $this->getPageImagesSrc($page["id"]);
+                        $page["imgs"] = $imgs;
+                        $ans[] = $page;
+                    }
+                    $res = $ans;
+                }
                 return $res;
             }
         }
