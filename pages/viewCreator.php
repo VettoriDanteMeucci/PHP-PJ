@@ -22,6 +22,7 @@
   $db = new DB();
   $pages = $db->fetchCreatorPages($_GET["id"]);
   $creator = $db->fetchUsernameByID($_GET["id"]);
+  $db->addViewsToUser($_GET["id"]);
   $colLen = count($pages);
   $rem = 0;
   if ($colLen % 3 != 0) {

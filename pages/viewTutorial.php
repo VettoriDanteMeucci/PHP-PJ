@@ -29,6 +29,7 @@
         <?php echo "data-id='$id'" ?>>
         <?php 
               $creator = $db->fetchCreatorIDByPage($id);
+              $db->addViewsToPage($id, $creator);
               if(isset($_SESSION["user"]) && ( ($_SESSION["user"]["isAdmin"]) || ($creator == $_SESSION["user"]["id"]))){
                 ?>
                   <form action="../actions/deletePage.php" method="POST">

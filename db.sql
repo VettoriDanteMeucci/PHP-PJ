@@ -5,7 +5,8 @@ USE wiki;
 CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,  -- id dell'utente, PRIMARY KEY
     username VARCHAR(255) NOT NULL,     -- nome utente
-    pass VARCHAR(255) NOT NULL          -- password
+    pass VARCHAR(255) NOT NULL,         -- password
+    views INT DEFAULT 0                 -- il numero di volte che pagine legate al user sono state visualizzate
 );
 
 CREATE TABLE admin (
@@ -17,7 +18,8 @@ CREATE TABLE admin (
 CREATE TABLE page (
     id INT PRIMARY KEY AUTO_INCREMENT,  -- id della pagina, PRIMARY KEY
     name VARCHAR(255) NOT NULL,         -- nome della pagina
-    creator INT                         -- id dell'utente creatore (FK)
+    creator INT,                        -- id dell'utente creatore (FK)
+    views INT DEFAULT 0                 -- views della pagina
 );
 
 -- Creazione della tabella 'image'

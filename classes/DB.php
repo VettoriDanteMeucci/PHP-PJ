@@ -94,12 +94,38 @@
             return $ans;
         }
 
+        /**
+         * Add a view to a page AND it's creator
+         * @param mixed $id the ID of the page
+         * @param mixed $creatorID if setted avoid searching for it
+         * @return void
+         */
+        function addViewsToPage($id, $creatorID = null){
+            $pageUpd = "UPDATE page SET views = views + 1 WHERE id = :pageID";
+            $st = $this->conn->prepare($pageUpd);
+            $st->bindParam(":pageID", $id);
+            if($creatorID == null){
+                $creatorID = $this->fetchCreatorIDByPage($id);
+            }
+            $creator = "UPDATE user SET views = views + 1 WHERE id = :userID";
+            $st2 = $this->conn->prepare($creator);
+            $st2->bindParam(":userID", $creatorID);
+            $st->execute();
+            $st2->execute();
+        }
+
+        function addViewsToUser($userID){
+            $query = "UPDATE user SET views = views + 1 WHERE id = :userID";
+            $st = $this->conn->prepare($query);
+            $st->bindParam(":userID", $userID);
+            $st->execute();
+        }
         function fetchPageByTitle($title = "_"){
             if( $title == ''){
                 return [];
             }else{
                 $query = "SELECT id, name FROM page 
-                WHERE name LIKE '%$title%'";
+                WHERE name LIKE '%$title%' ORDER BY views DESC";
                 $res = $this->conn->query($query);
                 $res = $res->fetchAll(PDO::FETCH_ASSOC);
                 return $res;
@@ -172,7 +198,7 @@
          * @return array
          */
         function fetchUserByName($name = "_"){
-            $query = "SELECT id, username FROM user WHERE username LIKE '%$name%'";
+            $query = "SELECT id, username FROM user WHERE username LIKE '%$name%' ORDER BY views DESC ";
             $res = $this->conn->query($query);
             $res = $res->fetchAll(PDO::FETCH_ASSOC);
             return $res;
