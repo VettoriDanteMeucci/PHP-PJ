@@ -15,7 +15,7 @@ function addImages($card, $page)
         if (count($imgs) == 1) {
             $card = str_replace(
                 "<!-- img -->",
-                "<img src='$imgs[0]' class='card-img-top' style='max-height: 25vh' alt=':)'>",
+                "<img src='$imgs[0]' class='card-img-top' alt=':)'>",
                 $card
             );
         } else {
@@ -25,7 +25,7 @@ function addImages($card, $page)
     }else{
         $card = str_replace(
             "<!-- img -->",
-            "<img src='http://localhost/PHP-PJ/images/minecraft.gif' style='max-height: 25vh' class='card-img-top' alt=':)'>",
+            "<img src='http://localhost/PHP-PJ/images/minecraft.gif' class='card-img-top' alt=':)'>",
             $card
         );
     }
@@ -37,7 +37,7 @@ function makeCarousel($card, $page)
     $imgs = $page["imgs"];
     $defImg =
         "<div class='carousel-item'>
-            <img src='#src' class='d-block w-100' style='max-height: 25vh' alt=':)'>
+            <img src='#src' class='d-block w-100' alt=':)'>
          </div>";
     $carou = file_get_contents("http://localhost/PHP-PJ/classes/carousel.html");
     $carou = str_replace("id#", "$page[name]$page[id]", $carou);

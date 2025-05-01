@@ -1,0 +1,38 @@
+.minecard{
+    transition: 200ms;
+    position: relative;
+}
+
+.minecard:hover{
+    transition: 200ms;
+    transform: translateY(-1.5rem);
+    position: relative;
+    -webkit-box-shadow: 1px 0px 33px 9px rgba(80,117,0,0.79); 
+box-shadow: 1px 0px 33px 9px rgba(80,117,0,0.79);
+}
+
+.minecard .btn-primary{
+    background-color: var(--green-grass-1);
+    border-color: var(--green-grass-1);
+    position: relative;
+    z-index: 0;
+}
+
+.minecard .btn-primary::after{
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background-image: url("../images/dark_oak_planck.jpg");
+    background-size: contain;
+    width: 0%;
+    height: 105%;
+    transition: 150ms ease-in-out;
+    z-index: -1;
+}
+
+.minecard .btn-primary:hover::after{
+    width: 102%;
+}
+
+.minecard img{max-height: 35vh;}
