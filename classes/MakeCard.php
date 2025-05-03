@@ -39,8 +39,9 @@ function makeCarousel($card, $page)
         "<div class='carousel-item'>
             <img src='#src' class='d-block w-100' alt=':)'>
          </div>";
+    $idCarou = str_replace(" ","_",$page['name'].$page['id']) ;
     $carou = file_get_contents("http://localhost/PHP-PJ/classes/carousel.html");
-    $carou = str_replace("id#", "$page[name]$page[id]", $carou);
+    $carou = str_replace("id#", $idCarou, $carou);
     $totImgs = "";
     for ($i = 0; $i < count($imgs); $i++) {
         if ($i == 0) {
