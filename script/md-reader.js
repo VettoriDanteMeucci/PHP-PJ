@@ -9,7 +9,7 @@ const NEWVALUES= {
     h3: "<h3>$1</h3>",
     li: "<li>$1</li>",
     checkbox: "<input type='checkbox'>",
-    link: "<a class='text-primary' href='$2'>$1</a>"
+    link: "<a class='text-primary' target='_blank' href='$2'>$1</a>"
 }
 
 export default class MDreader{

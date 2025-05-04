@@ -59,12 +59,50 @@ function renderTexts(data, ids){
             let div = document.createElement("div");
             div.append(createHeader(item.title, ids[index]))
             let p = document.createElement("p");
-            item.body = new MDreader(item.body).init()
-            p.innerHTML = item.body;
+            let mod = document.createElement("button")
+            mod.className = "btn btn-warning"
+            mod.textContent = "Modifica"
+            const prova = () => {
+                modify(div, p, item)
+            }
+            mod.addEventListener("click", prova)
+            div.append(mod)
+            p.innerHTML = new MDreader(item.body).init();
             div.appendChild(p);
             root.append(div)
         }
     )
+}
+
+function modify(div, p, item){
+    let form = document.createElement("form");
+    let tearea = document.createElement("textarea");
+    let title = document.createElement("input");
+    let submit = document.createElement("button");
+    let hidden = document.createElement("input");
+    let hidden2 = document.createElement("input");
+    title.type = "text"
+    title.value = item.title
+    title.name = "title"
+    title.className = "form-control mb-2"
+    hidden.type = "hidden";
+    hidden2.type = "hidden";
+    hidden.name = "textID"
+    hidden2.name = "pageID"
+    hidden2.value = id;
+    hidden.value = item.id;
+    submit.className = "btn btn-primary mt-2"
+    submit.textContent = "Salva"
+    tearea.value = item.body;
+    tearea.name = "body"
+    tearea.className = "form-control w-100"
+    form.append(title);
+    form.appendChild(tearea);
+    form.appendChild(submit);
+    form.append(hidden, hidden2);
+    form.method = "POST"
+    form.action = "http://localhost/PHP-PJ/actions/updateText.php"
+    root.replaceChild(form, div)
 }
 
 function createHeader(title, id){

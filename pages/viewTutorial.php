@@ -41,6 +41,7 @@
                   <form class="w-100 text-center mb-4" action="../actions/deletePage.php" method="POST">
                     <input type="hidden" name="pageID" value=<?php echo "'$id'"?>>
                     <button class="btn btn-danger">Elimina questo articolo</button>
+                    <a href="">Modifica pagina</a>
                   </form>
                 <?php
               }

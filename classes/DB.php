@@ -78,7 +78,7 @@
         }
 
         private function getTextsPage( $id ){
-            $res = $this->conn->query("SELECT title, body FROM text WHERE page = $id");
+            $res = $this->conn->query("SELECT id, title, body FROM text WHERE page = $id");
             return $res->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -309,6 +309,14 @@
             $st->bindParam(":pageID", $id);
             $st->bindParam(":body", $body);
             $st->bindParam(":userID", $user["id"]);
+            $st->execute();
+        }
+
+        function updateTextPage($id, $text, $title){
+            $query = "UPDATE text SET body = :text, title = :title WHERE id = $id";
+            $st = $this->conn->prepare($query);
+            $st->bindParam(":text", $text);
+            $st->bindParam(":title", $title);
             $st->execute();
         }
     }
