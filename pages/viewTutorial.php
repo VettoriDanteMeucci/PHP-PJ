@@ -32,19 +32,19 @@
             echo "data-logged='$isLog'";
 
         ?>>
-        <?php 
+    </div>
+    <?php 
               $creator = $db->fetchCreatorIDByPage($id);
               $db->addViewsToPage($id, $creator);
               if(isset($_SESSION["user"]) && ( ($_SESSION["user"]["isAdmin"]) || ($creator == $_SESSION["user"]["id"]))){
                 ?>
-                  <form action="../actions/deletePage.php" method="POST">
+                  <form class="w-100 text-center mb-4" action="../actions/deletePage.php" method="POST">
                     <input type="hidden" name="pageID" value=<?php echo "'$id'"?>>
                     <button class="btn btn-danger">Elimina questo articolo</button>
                   </form>
                 <?php
               }
         ?>
-    </div>
 
 
     <script type="module" src="../script/showPage.js"></script>

@@ -8,7 +8,8 @@ const NEWVALUES= {
     h2: "<h2>$1</h2>",
     h3: "<h3>$1</h3>",
     li: "<li>$1</li>",
-    checkbox: "<input type='checkbox'>"
+    checkbox: "<input type='checkbox'>",
+    link: "<a class='text-primary' href='$2'>$1</a>"
 }
 
 export default class MDreader{
@@ -30,6 +31,7 @@ export default class MDreader{
         this.var = this.var.replace(/`(.*)`/g, NEWVALUES.mark);
         this.var = this.var.replace(/\*\*\*(.*)\*\*\*/g, NEWVALUES.bold_italic);
         this.var = this.var.replace(/\[\s+\]/g, NEWVALUES.checkbox);
+        this.var = this.var.replace(/\[(.*)\]\((.*)\)/g, NEWVALUES.link);
     }
 
     spacesOrder(){
