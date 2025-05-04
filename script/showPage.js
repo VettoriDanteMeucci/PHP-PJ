@@ -1,4 +1,6 @@
+import MDreader from "./md-reader.js";
 const root = document.getElementById("root");
+let isLogged = -1
 let id = -1;
 
 function errorFound(){
@@ -9,6 +11,7 @@ function errorFound(){
 }
 
 function render (data) {
+    console.log(data)
     if(data == null || (data.images == false && data.texts.length == 0)){
         errorFound();
         return;
@@ -20,8 +23,14 @@ function render (data) {
     let ids = renderMenu(data)
     imgsRender(data)
     renderTexts(data,ids)
+    showComments(data.comments, isLogged)
 }
 
+/**
+ * 
+ * @param data obtained by the fetch 
+ * @returns the list of all indexes
+ */
 function renderMenu(data){
     let pos = data.texts.map(text =>
         text.title
@@ -45,12 +54,13 @@ function renderMenu(data){
 }
 
 function renderTexts(data, ids){
-    texts = data.texts;
+    let texts = data.texts;
     texts.forEach((item, index)=> {
             let div = document.createElement("div");
             div.append(createHeader(item.title, ids[index]))
             let p = document.createElement("p");
-            p.textContent = item.body;
+            item.body = new MDreader(item.body).init()
+            p.innerHTML = item.body;
             div.appendChild(p);
             root.append(div)
         }
@@ -83,11 +93,62 @@ function imgsRender(data) {
     root.append(img_cont)
 }
 
+function showComments(comments ,isLogged){
+    console.log(comments)
+    let section = document.createElement("div")
+    section.className = "bg-bricks row rounded section-comm mb-3"
+    comments.forEach(comment => {
+        let elem = document.createElement("div");
+        elem.className = "rounded"
+        let tit = document.createElement("a");
+        let body = document.createElement("p");
+        tit.innerHTML = comment.creator || "deleted user"
+        tit.href = comment.creator_id != null ?
+        "http://localhost/PHP-PJ/pages/viewCreator.php?id=" + comment.creator_id
+        :
+        "http://localhost/PHP-PJ"
+        body.innerHTML = new MDreader(comment.body).init()
+        elem.append(tit)
+        elem.append(body)
+        section.append(elem)
+    })
+    isLogged && createCommentForm(section) 
+    root.append(section)
+}
+
+function createCommentForm(section){
+    let form = document.createElement("form");
+    let lab = document.createElement("label");
+    let comm = document.createElement("textarea");
+    let submit = document.createElement("button");
+    let hidden = document.createElement("input");
+    hidden.type = "hidden"
+    hidden.name = "pageID";
+    hidden.value = id;
+    lab.innerText = "Il tuo commento";
+    comm.name = "body"
+    comm.placeholder = "Mi piace molto questa pagina"
+    comm.className = "form-control"
+    submit.innerText = "Invia"
+    submit.className = "btn btn-primary mt-3"
+    form.appendChild(lab)
+    form.appendChild(comm)
+    form.appendChild(hidden)
+    form.appendChild(submit)
+    form.className = "col-11 mb-3 bg-stone form-stone col-lg-8 mx-auto mt-5 px-3 py-4 rounded"
+    form.method="POST"
+    form.action="../actions/addComment.php"
+    section.append(form)
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
     id = root.getAttribute("data-id")
+    isLogged = root.getAttribute("data-logged") == 1;
+    console.log(isLogged)
     console.log(id);
     if(id == -1) return;
-    datas = fetch("http://localhost/PHP-PJ/api/getPage.php?id=" + id)
+    fetch("http://localhost/PHP-PJ/api/getPage.php?id=" + id)
     .then(res => {
         if(!res.ok){
             return null

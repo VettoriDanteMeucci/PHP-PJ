@@ -1,0 +1,9 @@
+.section-comm > div{
+    --bgcolor: rgba(50, 50, 50);
+    --bgcolor-2: rgba(100, 100, 100);
+    margin: 1rem 0.5rem;
+    padding: 0.25rem 0.5rem;
+    position: relative;
+    background-image: linear-gradient(var(--bgcolor), var(--bgcolor-2));
+}
+

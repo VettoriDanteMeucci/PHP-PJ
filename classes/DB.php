@@ -63,6 +63,7 @@
             if($ans["page"] == false) return false;
             $ans["images"] = $this->getPageImagesSrc($id);
             $ans["texts"] = $this->getTextsPage($id);
+            $ans["comments"] = $this->getPageComments($id);
             return $ans;
         }
 
@@ -92,6 +93,14 @@
                 return false;
             }
             return $ans;
+        }
+
+        private function getPageComments($pageID){
+            $res = $this->conn->query("SELECT comment.id, body, user.id as creator_id, user.username as creator  
+            FROM comment 
+            LEFT JOIN user ON user.id = creator
+            WHERE page = $pageID ORDER BY comment.id");
+            return $res->fetchAll(PDO::FETCH_ASSOC);
         }
 
         /**
@@ -291,6 +300,16 @@
         function deletePage($id){
             $query = "DELETE FROM page WHERE id = $id";
             $this->conn->exec($query);
+        }
+        
+        function addComment($body, $id){
+            $user = $_SESSION["user"];
+            $query = "INSERT INTO comment (body, page, creator) VALUES (:body, :pageID, :userID)";
+            $st = $this->conn->prepare($query);
+            $st->bindParam(":pageID", $id);
+            $st->bindParam(":body", $body);
+            $st->bindParam(":userID", $user["id"]);
+            $st->execute();
         }
     }
 
