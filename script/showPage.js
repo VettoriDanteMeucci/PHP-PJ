@@ -3,16 +3,16 @@ const root = document.getElementById("root");
 let isLogged = -1
 let id = -1;
 
-function errorFound(){
+function errorFound() {
     let error = document.createElement("h1")
     error.textContent = "No data available for this page"
     error.className = "fs-1 text-danger text-center my-5"
     root.append(error)
 }
 
-function render (data) {
+function render(data) {
     console.log(data)
-    if(data == null || (data.images == false && data.texts.length == 0)){
+    if (data == null || (data.images == false && data.texts.length == 0)) {
         errorFound();
         return;
     }
@@ -22,7 +22,7 @@ function render (data) {
     root.append(title)
     let ids = renderMenu(data)
     imgsRender(data)
-    renderTexts(data,ids)
+    renderTexts(data, ids)
     showComments(data.comments, isLogged)
 }
 
@@ -31,7 +31,7 @@ function render (data) {
  * @param data obtained by the fetch 
  * @returns the list of all indexes
  */
-function renderMenu(data){
+function renderMenu(data) {
     let pos = data.texts.map(text =>
         text.title
     )
@@ -40,7 +40,7 @@ function renderMenu(data){
     pos.forEach((item, index) => {
         let li = document.createElement("li")
         let link = document.createElement("a");
-        let id = "pos"+index;
+        let id = "pos" + index;
         ans.push(id)
         link.href = "#" + id
         link.textContent = item;
@@ -53,28 +53,29 @@ function renderMenu(data){
     return ans;
 }
 
-function renderTexts(data, ids){
+function renderTexts(data, ids) {
     let texts = data.texts;
-    texts.forEach((item, index)=> {
-            let div = document.createElement("div");
-            div.append(createHeader(item.title, ids[index]))
-            let p = document.createElement("p");
-            let mod = document.createElement("button")
-            mod.className = "btn btn-warning"
-            mod.textContent = "Modifica"
+    texts.forEach((item, index) => {
+        let div = document.createElement("div");
+        div.append(createHeader(item.title, ids[index]))
+        let p = document.createElement("p");
+        if (isLogged) {
+            let mod = document.createElement("i")
+            mod.className = "bi bi-pencil-square"
             const prova = () => {
                 modify(div, p, item)
             }
             mod.addEventListener("click", prova)
             div.append(mod)
-            p.innerHTML = new MDreader(item.body).init();
-            div.appendChild(p);
-            root.append(div)
         }
+        p.innerHTML = new MDreader(item.body).init();
+        div.appendChild(p);
+        root.append(div)
+    }
     )
 }
 
-function modify(div, p, item){
+function modify(div, p, item) {
     let form = document.createElement("form");
     let tearea = document.createElement("textarea");
     let title = document.createElement("input");
@@ -105,7 +106,7 @@ function modify(div, p, item){
     root.replaceChild(form, div)
 }
 
-function createHeader(title, id){
+function createHeader(title, id) {
     let header = document.createElement("h1");
     header.textContent = title;
     header.className = "font-minecraft-ten"
@@ -114,7 +115,7 @@ function createHeader(title, id){
 }
 
 function imgsRender(data) {
-    if(data.images == false) return false;
+    if (data.images == false) return false;
     let img_cont = document.createElement("div");
     let img_n = data.images.length
     img_cont.className = "row col-9 text-center row-cols-" + img_n;
@@ -131,7 +132,7 @@ function imgsRender(data) {
     root.append(img_cont)
 }
 
-function showComments(comments ,isLogged){
+function showComments(comments, isLogged) {
     console.log(comments)
     let section = document.createElement("div")
     section.className = "bg-bricks row rounded section-comm mb-3"
@@ -142,19 +143,19 @@ function showComments(comments ,isLogged){
         let body = document.createElement("p");
         tit.innerHTML = comment.creator || "deleted user"
         tit.href = comment.creator_id != null ?
-        "http://localhost/PHP-PJ/pages/viewCreator.php?id=" + comment.creator_id
-        :
-        "http://localhost/PHP-PJ"
+            "http://localhost/PHP-PJ/pages/viewCreator.php?id=" + comment.creator_id
+            :
+            "http://localhost/PHP-PJ"
         body.innerHTML = new MDreader(comment.body).init()
         elem.append(tit)
         elem.append(body)
         section.append(elem)
     })
-    isLogged && createCommentForm(section) 
+    isLogged && createCommentForm(section)
     root.append(section)
 }
 
-function createCommentForm(section){
+function createCommentForm(section) {
     let form = document.createElement("form");
     let lab = document.createElement("label");
     let comm = document.createElement("textarea");
@@ -174,8 +175,8 @@ function createCommentForm(section){
     form.appendChild(hidden)
     form.appendChild(submit)
     form.className = "col-11 mb-3 bg-stone form-stone col-lg-8 mx-auto mt-5 px-3 py-4 rounded"
-    form.method="POST"
-    form.action="../actions/addComment.php"
+    form.method = "POST"
+    form.action = "../actions/addComment.php"
     section.append(form)
 }
 
@@ -185,14 +186,14 @@ document.addEventListener("DOMContentLoaded", () => {
     isLogged = root.getAttribute("data-logged") == 1;
     console.log(isLogged)
     console.log(id);
-    if(id == -1) return;
+    if (id == -1) return;
     fetch("http://localhost/PHP-PJ/api/getPage.php?id=" + id)
-    .then(res => {
-        if(!res.ok){
-            return null
-        }else{
-            return res.json()
+        .then(res => {
+            if (!res.ok) {
+                return null
+            } else {
+                return res.json()
+            }
         }
-    }
-    ).then(data => render(data));
+        ).then(data => render(data));
 })

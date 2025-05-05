@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Create Wiki</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/show-page.css">
     </head>
@@ -13,7 +14,7 @@
     if(isset($_GET["id"]) && $_GET["id"] != "") 
        $id = $_GET["id"];
   ?>
-  <body>
+  <body class="bg-darkoak">
     <?php 
       include_once "../classes/Nav.php";
       include_once "../classes/DB.php";
@@ -23,25 +24,23 @@
         header("Location: ../index.php");
       }
       echo $nav->getNav();
+      $canModify = isset($_SESSION["user"]) && ( ($_SESSION["user"]["isAdmin"]) || ($creator == $_SESSION["user"]["id"]));
     ?>
   <div
             class="col-11 col-md-10 col-lg-8 row row-cols-1 mx-auto" 
         id="root"
         <?php echo "data-id='$id'";
-            $isLog = isset($_SESSION["user"]);
-            echo "data-logged='$isLog'";
-
+            echo "data-logged='$canModify'";
         ?>>
     </div>
     <?php 
               $creator = $db->fetchCreatorIDByPage($id);
               $db->addViewsToPage($id, $creator);
-              if(isset($_SESSION["user"]) && ( ($_SESSION["user"]["isAdmin"]) || ($creator == $_SESSION["user"]["id"]))){
+              if($canModify){
                 ?>
                   <form class="w-100 text-center mb-4" action="../actions/deletePage.php" method="POST">
                     <input type="hidden" name="pageID" value=<?php echo "'$id'"?>>
                     <button class="btn btn-danger">Elimina questo articolo</button>
-                    <a href="">Modifica pagina</a>
                   </form>
                 <?php
               }
