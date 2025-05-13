@@ -30,7 +30,7 @@ export default class MDreader{
         this.var = this.var.replace(/<ins>(.*)<\/ins>/g, NEWVALUES.underline);
         this.var = this.var.replace(/`(.*)`/g, NEWVALUES.mark);
         this.var = this.var.replace(/\*\*\*(.*)\*\*\*/g, NEWVALUES.bold_italic);
-        this.var = this.var.replace(/\[\s+\]/g, NEWVALUES.checkbox);
+        this.var = this.var.replace(/\[\s{1}\]/g, NEWVALUES.checkbox);
         this.var = this.var.replace(/\[(.*)\]\((.*)\)/g, NEWVALUES.link);
     }
 

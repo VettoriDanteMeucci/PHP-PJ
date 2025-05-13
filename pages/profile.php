@@ -19,8 +19,8 @@
 
     <body>
 
-        <div class="row">
-            <div class="col-md-3">
+        <div class="row mt-5">
+            <div class="col-md-6 mx-auto">
                 <h1>
                     <?php echo "Ciao " . $_SESSION["user"]["username"]; ?>
                 </h1>
@@ -72,22 +72,6 @@
                     </div>
                     <!-- end modal -->
                 </div>
-            </div>
-            <div class="col-md-9">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia incidunt, molestias laborum itaque earum
-                numquam ducimus quod repellat, laboriosam perspiciatis nobis, inventore quasi omnis a eum. Laboriosam eaque
-                voluptatem sit.
-                Magnam mollitia perspiciatis vitae animi soluta! Consequatur incidunt dolor magni repudiandae enim illum
-                quam vitae tenetur esse quidem quae facilis, libero repellat error officia quaerat! Deleniti id ad dolorem
-                obcaecati.
-                Id et odio mollitia optio, neque soluta eos ipsum voluptatum nulla iure quam molestiae incidunt ut natus
-                velit quaerat reiciendis, deleniti nam, fuga omnis asperiores qui alias magni placeat! Cumque?
-                Obcaecati dolore similique voluptatibus, doloremque dolorum quae ullam unde assumenda earum at, architecto
-                asperiores nisi maxime, consequuntur iure molestias facilis adipisci enim. Aliquam nihil earum iure soluta
-                reprehenderit praesentium? Possimus!
-                Nobis, quidem dolor. At eveniet hic eius vitae rerum quae? Expedita harum voluptatibus impedit. Aperiam
-                quibusdam vel at, officia qui, suscipit doloremque neque, accusantium deserunt eveniet ipsam expedita
-                maiores magnam.
             </div>
         </div>
 

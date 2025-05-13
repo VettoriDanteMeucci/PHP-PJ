@@ -43,6 +43,37 @@
     <button class="btn btn-primary">
       Crea
     </button>
+    <!-- MD tutorial -->
+    <div class="d-inline-flex gap-1">
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    MD
+  </button>
+</div>
+<div class="collapse mt-3" id="collapseExample">
+  <div class="card card-body bg-spruce text-nowrap">
+    <p>
+          usa doppio spazio per andare a capo <br>
+    __bold__ = <b>bold</b> <br>
+    _italic_ = <i>italic</i> <br>
+    &lt;ins&gt;underline&lt;/ins&gt; = <u>underline</u> <br>
+    `mark` = <mark>mark</mark> <br>
+    ***bold-italic*** = <b><i>bold-italic</i></b> <br>
+    [ ] = <input type="checkbox">
+    <br>
+     [google](https://www.google.com/) = <a class='text-primary' target='_blank' href='https://www.google.com/'>google</a>
+     <br> 
+     #ciao = <h1>ciao</h1>
+     <br> 
+     ##ciao = <h2>ciao</h2>
+     <br> 
+      ###ciao = <h3>ciao</h3>
+     <br>
+     usa 1. 2. 3. ecc. all'inizio di ogni linea per una lista ordinata 
+     <br>
+     usa - * + all'inizio di ogni linea per una semplice lista
+    </p>
+  </div>
+</div>
   </form>
   <script src="../script/form.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
