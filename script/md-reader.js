@@ -4,9 +4,9 @@ const NEWVALUES= {
     underline: "<u>$1</u>",
     mark: "<mark>$1</mark>",
     bold_italic: "<b><i>$1</i></b>",
-    h1: "<h1>$1</h1>",
-    h2: "<h2>$1</h2>",
-    h3: "<h3>$1</h3>",
+    h1: "<h1>$1</h1><hr>",
+    h2: "<h2>$1</h2><hr>",
+    h3: "<h3>$1</h3><hr>",
     li: "<li>$1</li>",
     checkbox: "<input type='checkbox'>",
     link: "<a class='text-primary' target='_blank' href='$2'>$1</a>"
@@ -82,9 +82,9 @@ export default class MDreader{
     }
 
     header(val){
-        val = val.replace(/^###(.*)/g,NEWVALUES.h3)
-        val = val.replace(/^##(.*)/g,NEWVALUES.h2)
-        val = val.replace(/^#(.*)/g,NEWVALUES.h1)
+        val = val.replace(/^###\s(.*)/g,NEWVALUES.h3)
+        val = val.replace(/^##\s(.*)/g,NEWVALUES.h2)
+        val = val.replace(/^#\s(.*)/g,NEWVALUES.h1)
         return val;
     }
 }

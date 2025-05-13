@@ -1,4 +1,4 @@
-.section-comm > div{
+.section-comm>div {
     --bgcolor: rgba(55, 55, 55, 0.7);
     --bgcolor-2: rgba(70, 70, 70, 0.5);
     backdrop-filter: blur(10px);
@@ -8,3 +8,10 @@
     background-image: linear-gradient(var(--bgcolor), var(--bgcolor-2));
 }
 
+hr {
+    margin-top: 0;
+    height: 5px;
+    background-color: white;
+    border: none;
+    opacity: 0.75;
+}
